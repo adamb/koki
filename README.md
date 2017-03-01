@@ -4,6 +4,29 @@ There is a nice [wind meter](http://www.weatherlink.com/user/cokikite/index.php?
 doesn't show any history.  I thought it would be fun to create a graph from this meter so I can see the history
 of the wind measurements.
 
+I'm going to try a new approach.  First get a simple page running.  Then try to generate a graph. Then firgure out 
+how to generatea  graph from datastore.  Then setup a cron job to populate the datastore....
+
+
+added helloGet.js
+
+> gcloud alpha functions deploy helloGET --stage-bucket koki-staging --trigger-http
+
+Hmm, got this error.  Maybe it needs to be called index.js? 
+
+> ERROR: (gcloud.alpha.functions.deploy) OperationError: code=3, message=Function load error: File index.js or function.js that is expected to define function doesn't exist in the root directory.
+
+Try this:
+
+> gcloud alpha functions deploy gcf-koki --stage-bucket koki-staging --trigger-http
+
+nope
+
+> ERROR: (gcloud.alpha.functions.deploy) OperationError: code=3, message=Function load error: Node.js module defined by file index.js is expected to export function named gcf-koki
+
+Ah, ok, need to call the function gcf-koki or change the deploy parameter.
+
+
 ## Step 1
 
 I need to grab the wind direction and the speed and stick it in a file.  I'm using a cronjob on a server that I know
@@ -11,7 +34,8 @@ is always up.  It runs the koki.sh script every minute and sticks the data in a 
 
 ## Step 2
 
-Take the data and put it into a Google Cloud Storgage bucket.
+Deploy a Google Cloud Function that generates and servs a graph.
+
 
 ## Step 3
 
