@@ -4,6 +4,6 @@
  * @param {Object} req Cloud Function request context.
  * @param {Object} res Cloud Function response context.
  */
-exports.helloGET = function helloGET (req, res) {
-  res.send('Hello World!');
+exports.kokiGET = function helloGET (req, res) {
+  res.send('Add wind graph here.');
 };
