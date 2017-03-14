@@ -28,12 +28,15 @@ Ah, ok, need to call the function gcf-koki or change the deploy parameter.
 
 > gcloud alpha functions deploy helloGET --stage-bucket koki-staging --trigger-http
 
-So the file needs to be called index.js and the name of the function needs to match the deploy name.
+That worked!  So the file needs to be called index.js and the name of the function needs to match the deploy name.
+Now change the function name to kokiGET and deploy.
 
 > gcloud alpha functions deploy kokiGET --stage-bucket koki-staging --trigger-http
 
-That worked!
 
+Why does the output say gcf-streaming?
+
+> gcloud alpha functions deploy kokiHttp --stage-bucket koki-staging --trigger-http
 
 ## Step 1
 
